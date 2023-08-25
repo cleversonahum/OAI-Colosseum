@@ -1,3 +1,5 @@
+#!/usr/bin/python3.6
+
 import os
 import argparse
 import json
@@ -122,8 +124,8 @@ class Ran:
                      '--RUs.[0].max_rxgain 114',
                      '--RUs.[0].eNB_instances [0]',
                      '--RUs.[0].bf_weights [0x00007fff, 0x0000, 0x0000, 0x0000]',
-                     '--RUs.[0].clock_src "external"',
-                     '--RUs.[0].time_src "external"',
+                     '--RUs.[0].clock_src "internal"',
+                     '--RUs.[0].time_src "internal"',
                      f'--RUs.[0].sdr_addrs "addr={USRP_ADDR}"',
                      f'--RUs.[0].if_freq {self.if_freq}']
             tss = 'THREAD_STRUCT = \(\{ \}\)\;'
@@ -202,7 +204,7 @@ class Ran:
             oai_args += [f'{self.phytest}']
         if self.args.scope:
             oai_args += ['-d']
-        oai_args += [f'--continuous-tx']
+        # oai_args += [f'--continuous-tx']
         oai_args += ["--thread-pool '-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1'"]
         # Set cell name and id
         oai_args += [f'--Active_gNBs "IAB-{self.node_id}"',
@@ -250,8 +252,8 @@ class Ran:
                 '--nokrnmod 1',
                 '--ue-txgain 0',
                 f'-A {self.conf["timing_advance"]}',
-                '--clock-source 1',
-                '--time-source 1',
+                '--clock-source 0',
+                '--time-source 0',
                 '--ue-fo-compensation',
                 f'--if_freq {self.if_freq}']
         if self.args.type == 'phy-test':
