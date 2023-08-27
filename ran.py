@@ -260,7 +260,7 @@ class Ran:
                 '--time-source 0',
                 '--ue-fo-compensation',
                 '--net-slice',
-                f'--if_freq {self.if_freq}'],
+                f'--if_freq {self.if_freq}']
         if self.args.type == 'phy-test':
             args += ["--phy-test"]
         if self.args.rfsim > 0:
@@ -312,7 +312,11 @@ if __name__ == '__main__':
     parser.add_argument('--if_freq', default=0, type=int)
     parser.add_argument('--scope', default=False, action='store_true', help='Activate softscope (scope needs to be compiled and SSH needs -X or -Y)')
 
-    parser.add_argument('--sd', default=1, type=int, help='nrUE nssai_sd value')
+    parser.add_argument('--sd', 
+                        default=1, 
+                        type=int, 
+                        choices=[1,2],
+                        help='nrUE nssai_sd value')
 
     args = parser.parse_args()
     r = Ran(args)
