@@ -4,7 +4,7 @@ services:
         container_name: "mysql"
         image: mysql:8.0
         volumes:
-            - ./database/oai_db1.sql:/docker-entrypoint-initdb.d/oai_db.sql
+            - /root/OAI-Colosseum/core/database/oai_db1.sql:/docker-entrypoint-initdb.d/oai_db.sql
             - ./healthscripts/mysql-healthcheck1.sh:/tmp/mysql-healthcheck.sh
         environment:
             - TZ=Europe/Paris
@@ -58,7 +58,7 @@ services:
             - SD_1=1
             # Slice 2 (1, 2)
             - SST_2=1
-            - SD_2=1
+            - SD_2=2
             - AMF_INTERFACE_NAME_FOR_NGAP=eth0
             - AMF_INTERFACE_NAME_FOR_N11=eth0
             # mysql definition in AMF is mandatory in mini deployment.
@@ -162,7 +162,7 @@ services:
             - NSSAI_SST_1=1
             - NSSAI_SD_1=1
             - DNN_1=oai
-            # Slice 2 (1,0)
+            # Slice 2 (1,2)
             - NSSAI_SST_2=1
             - NSSAI_SD_2=2
             - DNN_2=oai2
