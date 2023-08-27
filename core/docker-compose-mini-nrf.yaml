@@ -4,7 +4,7 @@ services:
         container_name: "mysql"
         image: mysql:8.0
         volumes:
-            - /root/OAI-Colosseum/core/database/oai_db1.sql:/docker-entrypoint-initdb.d/oai_db.sql
+            - ./database/oai_db1.sql:/docker-entrypoint-initdb.d/oai_db.sql
             - ./healthscripts/mysql-healthcheck1.sh:/tmp/mysql-healthcheck.sh
         environment:
             - TZ=Europe/Paris
