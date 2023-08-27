@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cd /root/Openairinterface5g/ &&  git pull 'https://ChengDaHaI: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@github.com/wineslab/Openairinterface.git' NR_Slicing
+cd /root/Openairinterface5g/ &&  git pull 'https://ChengDaHaI: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@github.com/wineslab/Openairinterface.git' NR_Slicing
