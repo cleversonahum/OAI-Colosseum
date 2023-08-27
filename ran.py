@@ -92,6 +92,7 @@ class Ran:
                      '--MACRLCs.[0].pucch_TargetSNRx10 200',
                      '--MACRLCs.[0].ul_prbblack_SNR_threshold 10',
                      '--MACRLCs.[0].ulsch_max_frame_inactivity 0',
+                     '--MACRLCs.[0].SliceConf /root/Openairinterface5g/rrmPolicy.json',
                      '--MACRLCs.[0].ul_max_mcs 28']
             if f1_type == 'du':
                 args += ['--MACRLCs.[0].tr_n_preference "f1"',
