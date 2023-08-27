@@ -78,6 +78,8 @@ class Ran:
         except:
             pass
 
+        self.nssai_sd = args.sd
+
     def set_config_file(self, f1_type, local_ip, local_dev):
         os.system(f"cp {BASE_CONF} {self.config_file}")
         subst_bindip(local_ip, local_dev, self.if_freq, self.config_file)
@@ -243,6 +245,7 @@ class Ran:
         args = ["--thread-pool '-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1'",
                 f'--{self.mode}',
                 f"--uicc0.imsi 20899000074{self.node_id[1:]}",
+                f"--uicc0.nssai_sd {self.nssai_sd}",
                 f'--usrp-args "addr={USRP_ADDR}"',
                 f'--numerology {self.numerology}',
                 f'-r {self.prb}',
@@ -256,7 +259,8 @@ class Ran:
                 '--clock-source 0',
                 '--time-source 0',
                 '--ue-fo-compensation',
-                f'--if_freq {self.if_freq}']
+                '--net-slice',
+                f'--if_freq {self.if_freq}'],
         if self.args.type == 'phy-test':
             args += ["--phy-test"]
         if self.args.rfsim > 0:
@@ -307,6 +311,8 @@ if __name__ == '__main__':
     parser.add_argument('--flash', '-f', default=False, action='store_true')
     parser.add_argument('--if_freq', default=0, type=int)
     parser.add_argument('--scope', default=False, action='store_true', help='Activate softscope (scope needs to be compiled and SSH needs -X or -Y)')
+
+    parser.add_argument('--sd', default=1, type=int, help='nrUE nssai_sd value')
 
     args = parser.parse_args()
     r = Ran(args)
