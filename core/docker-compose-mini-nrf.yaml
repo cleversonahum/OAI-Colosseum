@@ -120,7 +120,7 @@ services:
             - SESSION_AMBR_UL1=100Mbps
             - SESSION_AMBR_DL1=200Mbps
             # Slice 2 (1, 2)
-            - DNN_NI2=oai2
+            - DNN_NI2=oai
             - TYPE2=IPv4
             - DNN_RANGE2=12.1.1.2 - 12.1.1.50
             - NSSAI_SST2=1
@@ -165,7 +165,7 @@ services:
             # Slice 2 (1,2)
             - NSSAI_SST_2=1
             - NSSAI_SD_2=2
-            - DNN_2=oai2
+            - DNN_2=oai
         depends_on:
             - oai-nrf
             - oai-smf
