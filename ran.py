@@ -71,6 +71,7 @@ class Ran:
         self.conf = self.conf_json[str(self.numerology)][str(self.prb)]
         self.set_if_freq(self.channel)
         self.set_params(arfcn=self.conf['arfcns'][self.channel])
+        self.rfsimip = args.rfsimip
 
         self.set_ips()
         try:
@@ -195,7 +196,9 @@ class Ran:
             pre_path = f"numactl --cpunodebind=netdev:{USRP_DEV} --membind=netdev:{USRP_DEV} "
         if self.args.gdb > 0:
             # gdb override numa
-            pre_path = f'gdb --args '
+            pre_path = f'gdb --args'
+        if self.args.gdbserver > 0:
+            pre_path = f'gdbserver :1234'
         executable = f"{OAI_PATH}/cmake_targets/ran_build/build/nr-softmodem "
         oai_args = [f"-O {self.config_file}", "--usrp-tx-thread-config 1"]
         if self.prb >= 106 and self.numerology == 1:
@@ -264,7 +267,7 @@ class Ran:
         if self.args.type == 'phy-test':
             args += ["--phy-test"]
         if self.args.rfsim > 0:
-            executable = f"RFSIMULATOR=127.0.0.1 {main_exe}"
+            executable = f"RFSIMULATOR={self.rfsimip} {main_exe}"
             args += ["--rfsim"]
         else:
             executable = main_exe
@@ -273,7 +276,7 @@ class Ran:
             args += ["-E"]
         if self.args.scope:
             args += ["-d"]
-        os.system(f"""{pre_path} {executable} {' '.join(args)} 2>&1 | tee ~/mylogs/UE1-$(date +"%m%d%H%M").log | tee ~/last_log""")
+        os.system(f"""{pre_path} bash -c "{executable} {' '.join(args)} 2>&1" | tee ~/mylogs/UE1-$(date +"%m%d%H%M").log | tee ~/last_log""")
 
 
 if __name__ == '__main__':
@@ -304,10 +307,14 @@ if __name__ == '__main__':
     parser.add_argument('--rfsim',
                         default=False,
                         action='store_true')
+    parser.add_argument('--rfsimip',
+                        default="127.0.0.1",
+                        type=str)
     parser.add_argument('--numa',
                         default=True,
                         action='store_false')
     parser.add_argument('--gdb', default=False, action='store_true')
+    parser.add_argument('--gdbserver', default=False, action='store_true')
     parser.add_argument('--flash', '-f', default=False, action='store_true')
     parser.add_argument('--if_freq', default=0, type=int)
     parser.add_argument('--scope', default=False, action='store_true', help='Activate softscope (scope needs to be compiled and SSH needs -X or -Y)')
