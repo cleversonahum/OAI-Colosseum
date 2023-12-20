@@ -1,0 +1,10 @@
+[Unit]
+Description=OAI Core network
+
+[Service]
+WorkingDirectory=/root/oai-cn5g-fed/docker-compose/
+ExecStart=/bin/bash -c "cd /root/oai-cn5g-fed/docker-compose/ && /usr/bin/python3 /root/oai-cn5g-fed/docker-compose/core-network.py -t start-mini --scenario 1"
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=OAI UE
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+ExecStart=/bin/bash -c "cd /root/OAI-Colosseum && source .env && python3 ran.py -t ue --rfsim --rfsimip 172.30.133.133"
+Restart=on-failure
+RestartSec=100ms
+
+[Install]
+WantedBy=multi-user.target

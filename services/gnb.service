@@ -1,0 +1,14 @@
+[Unit]
+Description=OAI gNB
+StartLimitIntervalSec=300
+StartLimitBurst=5
+Requires=core_network.service
+
+[Service]
+WorkingDirectory=/root/OAI-Colosseum
+ExecStart=/bin/bash -c "cd /root/OAI-Colosseum && source .env && python3 ran.py -t donor --rfsim"
+Restart=on-failure
+RestartSec=100ms
+
+[Install]
+WantedBy=multi-user.target

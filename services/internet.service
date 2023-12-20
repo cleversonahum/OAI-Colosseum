@@ -1,0 +1,9 @@
+[Unit]
+Description=Enable internet inside Colosseum
+
+[Service]
+ExecStart=/root/OAI-Colosseum/utils/set_internet_access.sh
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
