@@ -7,11 +7,11 @@ abs_path=$(pwd)
 
 if [ "$third_octet" = "$fourth_octet" ]; then
 	echo "Enabling BS+Core services"
-	systemctl enable $abs_path/services/internet.service
-	systemctl enable $abs_path/services/core_network.service
-	systemctl enable $abs_path/services/gnb.service
+	systemctl enable --now $abs_path/services/internet.service
+	systemctl enable --now $abs_path/services/core_network.service
+	systemctl enable --now $abs_path/services/gnb.service
 else
 	echo "Enabling UE services"
-	systemctl enable $abs_path/services/internet.service
-	systemctl enable $abs_path/services/ue.service
+	systemctl enable --now $abs_path/services/internet.service
+	systemctl enable --now $abs_path/services/ue.service
 fi
