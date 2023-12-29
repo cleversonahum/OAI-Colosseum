@@ -1,0 +1,9 @@
+[Unit]
+Description=Starting network function
+
+[Service]
+ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/start_services.sh"
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
