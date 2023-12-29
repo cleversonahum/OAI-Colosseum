@@ -12,6 +12,8 @@ if [ "$third_octet" = "$fourth_octet" ]; then
 	systemctl enable --now $abs_path/services/gnb.service
 else
 	echo "Enabling UE services"
+	gnb_ip=$(echo $ip_adddress | awk -F'.' -v var="$third_octet" '{OFS="."} {$4=var; print}')
+	echo "GNB_IP=$gnb_ip" > /root/OAI-Colosseum/services/gnb.conf
 	systemctl enable --now $abs_path/services/internet.service
 	systemctl enable --now $abs_path/services/ue.service
 fi

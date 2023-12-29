@@ -4,7 +4,8 @@ StartLimitIntervalSec=300
 StartLimitBurst=5
 
 [Service]
-ExecStart=/bin/bash -c "cd /root/OAI-Colosseum && source .env && python3 ran.py -t ue --rfsim --rfsimip 172.30.133.133"
+EnvironmentFile=/root/OAI-Colosseum/services/gnb.conf
+ExecStart=/bin/bash -c "cd /root/OAI-Colosseum && source .env && python3 ran.py -t ue --rfsim --rfsimip $GNB_IP"
 Restart=on-failure
 RestartSec=100ms
 
