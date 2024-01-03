@@ -1,0 +1,13 @@
+[Unit]
+Description=Iperf3 client for UE
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+EnvironmentFile=/root/OAI-Colosseum/services/gnb.conf
+ExecStart=/bin/bash -c "iperf3 -c $GNB_IP --bind-dev oaitun_ue10 -t 0 -b 20M -R --rcv-timeout 100"
+Restart=always
+RestartSec=100ms
+
+[Install]
+WantedBy=multi-user.target

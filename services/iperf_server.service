@@ -1,0 +1,12 @@
+[Unit]
+Description=Iperf3 Server for gNB
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+ExecStart=/bin/bash -c "iperf3 -s --snd-timeout 100 --idle-timeout 5"
+Restart=always
+RestartSec=100ms
+
+[Install]
+WantedBy=multi-user.target
