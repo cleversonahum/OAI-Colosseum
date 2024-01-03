@@ -2,6 +2,7 @@
 Description=Iperf3 Server for gNB
 StartLimitIntervalSec=300
 StartLimitBurst=5
+Requires=gnb.service
 
 [Service]
 ExecStart=/bin/bash -c "iperf3 -s --snd-timeout 100 --idle-timeout 5"
