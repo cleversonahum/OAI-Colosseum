@@ -1,0 +1,13 @@
+[Unit]
+Description= xApp using Ray Server agent
+StartLimitIntervalSec=500
+StartLimitBurst=5
+After=iperf_server.service
+
+[Service]
+ExecStart=/bin/bash -c "cd /root/xapp_sched_rlagent && pipenv run python rl_server.py"
+Restart=always
+RestartSec=100ms
+
+[Install]
+WantedBy=multi-user.target

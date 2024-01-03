@@ -1,0 +1,13 @@
+[Unit]
+Description= xApp using Ray client agent
+StartLimitIntervalSec=500
+StartLimitBurst=5
+After=xapp_server.service
+
+[Service]
+ExecStart=/bin/bash -c "cd /root/xapp_sched_rlagent && pipenv run python oai_client.py"
+Restart=always
+RestartSec=100ms
+
+[Install]
+WantedBy=multi-user.target

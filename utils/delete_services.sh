@@ -11,6 +11,8 @@ if [ "$third_octet" = "$fourth_octet" ]; then
 	docker rm -f $(docker ps -qa)
 	systemctl disable --now gnb.service
 	systemctl disable --now iperf_server
+	systemclt disable --now xapp_server
+	systemctl disable --now xapp_client
 else
 	echo "Disabling UE services"
 	systemctl disable --now ue.service

@@ -10,6 +10,8 @@ if [ "$third_octet" = "$fourth_octet" ]; then
 	systemctl enable --now /root/OAI-Colosseum/services/core_network.service
 	systemctl enable --now /root/OAI-Colosseum/services/gnb.service
 	systemctl enable --now /root/OAI-Colosseum/services/iperf_server.service
+	systemctl enable --now /root/OAI-Colosseum/services/xapp_server.service
+	systemctl enable --now /root/OAI-Colosseum/services/xapp_client.service
 else
 	echo "Enabling UE services"
 	first_three_octets=$(echo $ip_address | cut -d '.' -f 1-3)
