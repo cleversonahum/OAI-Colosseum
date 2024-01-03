@@ -8,6 +8,7 @@ systemctl disable --now start_network.service
 if [ "$third_octet" = "$fourth_octet" ]; then
 	echo "Disabling BS+Core services"
 	systemctl disable --now core_network.service
+	docker rm -f $(docker ps -qa)
 	systemctl disable --now gnb.service
 	systemctl disable --now iperf_server
 else
