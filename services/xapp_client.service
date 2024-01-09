@@ -1,7 +1,7 @@
 [Unit]
 Description= xApp using Ray client agent
-StartLimitIntervalSec=500
-StartLimitBurst=5
+StartLimitIntervalSec=infinity
+StartLimitBurst=infinity
 Requires=xapp_server.service
 
 [Service]

@@ -1,7 +1,7 @@
 [Unit]
 Description= xApp using Ray Server agent
-StartLimitIntervalSec=500
-StartLimitBurst=5
+StartLimitIntervalSec=infinity
+StartLimitBurst=infinity
 After=iperf_server.service
 
 [Service]
