@@ -1,10 +1,10 @@
 #!/bin/bash
 
-ip_address=$(ip a show col0 | grep -Po "\b(?:\d{1,3}\.){3}\d{1,3}\b")
-third_octet=$(echo "$ip_address" | cut -d '.' -f 3)
-fourth_octet=$(echo "$ip_address" | cut -d '.' -f 4)
+source /root/OAI-Colosseum/utils/discover_function.sh
 
-if [ "$third_octet" = "$fourth_octet" ]; then
+interface_name="col0"
+result=$(get_host_index "$interface_name")
+if [ "$result" = "1" ]; then
 	echo "Enabling BS+Core services"
 	systemctl enable --now /root/OAI-Colosseum/services/core_network.service
 	systemctl enable --now /root/OAI-Colosseum/services/gnb.service
