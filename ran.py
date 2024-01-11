@@ -245,6 +245,8 @@ class Ran:
         if self.args.gdb > 0:
             # gdb override numa
             pre_path = f'gdb --args'
+        if self.args.gdbserver > 0:
+            pre_path = f'gdbserver :1234'
         args = ["--thread-pool '-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1'",
                 f'--{self.mode}',
                 f"--uicc0.imsi 20899000074{self.node_id[1:]}",
