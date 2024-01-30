@@ -6,6 +6,7 @@ Requires=core_network.service
 
 [Service]
 WorkingDirectory=/root/OAI-Colosseum
+ExecStartPre=/bin/sleep 30
 ExecStart=/bin/bash -c "cd /root/OAI-Colosseum && source .env && python3 ran.py -t donor --rfsim"
 Restart=always
 RestartSec=100ms
