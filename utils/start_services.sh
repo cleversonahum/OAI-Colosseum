@@ -10,9 +10,9 @@ if [ "$result" = "1" ]; then
 	echo "Enabling BS+Core services"
 	systemctl enable --now /root/OAI-Colosseum/services/core_network.service
 	systemctl enable --now /root/OAI-Colosseum/services/gnb.service
-	systemctl enable --now /root/OAI-Colosseum/services/iperf_server.service
-	systemctl enable --now /root/OAI-Colosseum/services/xapp_server.service
-	systemctl enable --now /root/OAI-Colosseum/services/xapp_client.service
+	#systemctl enable --now /root/OAI-Colosseum/services/iperf_server.service
+	#systemctl enable --now /root/OAI-Colosseum/services/xapp_server.service
+	#systemctl enable --now /root/OAI-Colosseum/services/xapp_client.service
 else
 	echo "Enabling UE services"
 	first_three_octets=$(echo $ip_address | cut -d '.' -f 1-3)
@@ -20,5 +20,5 @@ else
 	sd=$(($result%2 + 1))
 	echo -e "GNB_IP=$gnb_ip\nSD=$sd" > /root/OAI-Colosseum/services/env.conf
 	systemctl enable --now /root/OAI-Colosseum/services/ue.service
-	systemctl enable --now /root/OAI-Colosseum/services/iperf_client.service
+	#systemctl enable --now /root/OAI-Colosseum/services/iperf_client.service
 fi
