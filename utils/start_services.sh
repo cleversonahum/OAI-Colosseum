@@ -17,7 +17,8 @@ else
 	echo "Enabling UE services"
 	first_three_octets=$(echo $ip_address | cut -d '.' -f 1-3)
 	gnb_ip="$first_three_octets.$third_octet"
-	echo "GNB_IP=$gnb_ip" > /root/OAI-Colosseum/services/gnb.conf
+	sd=$(($result%2 + 1))
+	echo -e "GNB_IP=$gnb_ip\nSD=$sd" > /root/OAI-Colosseum/services/env.conf
 	systemctl enable --now /root/OAI-Colosseum/services/ue.service
 	systemctl enable --now /root/OAI-Colosseum/services/iperf_client.service
 fi
