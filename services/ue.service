@@ -1,7 +1,7 @@
 [Unit]
 Description=OAI UE
-StartLimitIntervalSec=300
-StartLimitBurst=5
+StartLimitIntervalSec=infinity
+StartLimitBurst=infinity
 
 [Service]
 EnvironmentFile=/root/OAI-Colosseum/services/gnb.conf

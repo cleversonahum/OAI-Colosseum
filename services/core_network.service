@@ -3,7 +3,7 @@ Description=OAI Core network
 
 [Service]
 WorkingDirectory=/root/oai-cn5g-fed/docker-compose/
-ExecStart=/bin/bash -c "cd /root/oai-cn5g-fed/docker-compose/ && /usr/bin/python3 /root/oai-cn5g-fed/docker-compose/core-network.py -t start-mini --scenario 1"
+ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/restart_core.sh"
 Type=oneshot
 
 [Install]

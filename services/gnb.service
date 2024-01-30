@@ -1,7 +1,7 @@
 [Unit]
 Description=OAI gNB
-StartLimitIntervalSec=300
-StartLimitBurst=5
+StartLimitIntervalSec=infinity
+StartLimitBurst=infinity
 Requires=core_network.service
 
 [Service]

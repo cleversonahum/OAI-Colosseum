@@ -1,7 +1,7 @@
 [Unit]
 Description=Iperf3 Server for gNB
-StartLimitIntervalSec=300
-StartLimitBurst=5
+StartLimitIntervalSec=infinity
+StartLimitBurst=infinity
 Requires=gnb.service
 
 [Service]
