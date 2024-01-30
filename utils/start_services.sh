@@ -5,7 +5,9 @@ third_octet=$(echo "$ip_address" | cut -d '.' -f 3)
 
 source /root/OAI-Colosseum/utils/discover_function.sh
 interface_name="col0"
-result=$(get_host_index "$interface_name")
+total_nodes=3
+
+result=$(get_host_index "$interface_name" "$total_nodes")
 if [ "$result" = "1" ]; then
 	echo "Enabling BS+Core services"
 	systemctl enable --now /root/OAI-Colosseum/services/core_network.service

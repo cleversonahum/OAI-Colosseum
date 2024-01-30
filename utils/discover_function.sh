@@ -2,6 +2,7 @@
 
 get_host_index() {
     local interface="$1"
+    local total_nodes="$2"
 
     # Discover the base IP of the given interface
     local base_ip=$(ip addr show dev "$interface" | awk '/inet / {print $2}')
@@ -9,10 +10,17 @@ get_host_index() {
     local base_ip_address="${base_ip_parts[0]}"
 
     # Perform an nmap scan to find live hosts in the network
-    local nmap_output=$(nmap -sP "$base_ip_address"/24 -oG - | awk '/Up$/ {print $2}')
-
-    # Filter and store IPs where the fourth octet is greater than or equal to 100
-    local filtered_ips=$(printf '%s\n' "${nmap_output[@]}" | grep -Eo "([0-9]{1,3}\.){3}[1-9][0-9]{2}$")
+    local nmap_output
+    local current_nodes=0
+    while [ "$current_nodes" -lt "$total_nodes" ]; do
+        nmap_output=$(nmap -sP "$base_ip_address"/24 -oG - | awk '/Up$/ {print $2}')
+        filtered_ips=$(printf '%s\n' "${nmap_output[@]}" | grep -Eo "([0-9]{1,3}\.){3}[1-9][0-9]{2}$")
+        current_nodes=$(echo "$filtered_ips" | wc -l)
+        echo -n "Discovered $current_nodes out of $total_nodes nodes... " >&2
+        echo -en "\r" >&2
+        sleep 5
+    done
+    echo "" >&2  # Print a new line to make sure the next line is not overwriting this one
 
     # Sort filtered IPs in ascending order
     local sorted_ips=$(printf '%s\n' "${filtered_ips[@]}" | sort -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4)
@@ -31,7 +39,8 @@ get_host_index() {
 }
 
 # Example usage of the function
-interface_name="col0"
-result=$(get_host_index "$interface_name")
-echo "Host machine index: $result"
+#interface_name="col0"
+#total_nodes=10
+#result=$(get_host_index "$interface_name" "$total_nodes")
+#echo "Host machine index: $result"
 
