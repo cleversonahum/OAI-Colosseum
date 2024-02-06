@@ -23,7 +23,7 @@ else
 	first_three_octets=$(echo $ip_address | cut -d '.' -f 1-3)
 	gnb_ip="$first_three_octets.$third_octet"
 	sd=$(($result%2 + 1))
-	echo -e "GNB_IP=$gnb_ip\nSD=$sd" > /root/OAI-Colosseum/services/env.conf
+	echo -e "GNB_IP=$gnb_ip\nSD=$sd\nNODE_IDX=$result" > /root/OAI-Colosseum/services/env.conf
 	systemctl enable --now /root/OAI-Colosseum/services/ue.service
-	#systemctl enable --now /root/OAI-Colosseum/services/iperf_client.service
+	systemctl enable --now /root/OAI-Colosseum/services/iperf_client.service
 fi
