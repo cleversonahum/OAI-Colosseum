@@ -2,7 +2,7 @@
 Description=OAI gNB
 StartLimitIntervalSec=infinity
 StartLimitBurst=infinity
-Requires=core_network.service
+After=core_network.service
 
 [Service]
 WorkingDirectory=/root/OAI-Colosseum
