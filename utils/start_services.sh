@@ -12,7 +12,10 @@ if [ "$result" = "1" ]; then
 	echo "Enabling BS+Core services"
 	systemctl enable --now /root/OAI-Colosseum/services/core_network.service
 	systemctl enable --now /root/OAI-Colosseum/services/gnb.service
-	#systemctl enable --now /root/OAI-Colosseum/services/iperf_server.service
+	systemctl link /root/OAI-Colosseum/services/iperf_server@.service
+	for ((i = 1; i < total_nodes; i++)); do
+		systemctl enable --now iperf_server@$i.service
+	done
 	#systemctl enable --now /root/OAI-Colosseum/services/xapp_server.service
 	#systemctl enable --now /root/OAI-Colosseum/services/xapp_client.service
 else

@@ -1,11 +1,11 @@
 [Unit]
-Description=Iperf3 Server for gNB
+Description=Iperf3 Server for gNB %i
 StartLimitIntervalSec=infinity
 StartLimitBurst=infinity
 Requires=gnb.service
 
 [Service]
-ExecStart=/bin/bash -c "iperf3 -s --snd-timeout 100 --idle-timeout 5"
+ExecStart=/bin/bash -c "iperf3 -s --snd-timeout 100 --idle-timeout 5 -p 520%i"
 Restart=always
 RestartSec=100ms
 
