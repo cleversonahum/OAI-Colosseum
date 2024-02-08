@@ -6,4 +6,4 @@ ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/start_services.sh"
 Type=oneshot
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=graphical.target

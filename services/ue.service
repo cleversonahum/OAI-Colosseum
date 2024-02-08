@@ -2,6 +2,7 @@
 Description=OAI UE
 StartLimitIntervalSec=infinity
 StartLimitBurst=infinity
+After=start_network.service
 
 [Service]
 EnvironmentFile=/root/OAI-Colosseum/services/env.conf
@@ -10,4 +11,4 @@ Restart=always
 RestartSec=100ms
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=graphical.target

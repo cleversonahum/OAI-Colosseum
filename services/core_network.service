@@ -1,5 +1,6 @@
 [Unit]
 Description=OAI Core network
+After=start_network.service
 
 [Service]
 WorkingDirectory=/root/oai-cn5g-fed/docker-compose/
@@ -8,4 +9,4 @@ ExecStartPost=/bin/sleep 30
 Type=oneshot
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=graphical.target
