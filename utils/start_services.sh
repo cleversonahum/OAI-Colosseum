@@ -16,8 +16,8 @@ if [ "$result" = "1" ]; then
 	for ((i = 1; i < total_nodes; i++)); do
 		systemctl enable --now iperf_server@$i.service
 	done
-	#systemctl enable --now /root/OAI-Colosseum/services/xapp_server.service
-	#systemctl enable --now /root/OAI-Colosseum/services/xapp_client.service
+	systemctl enable --now /root/OAI-Colosseum/services/xapp_server.service
+	systemctl enable --now /root/OAI-Colosseum/services/xapp_client.service
 else
 	echo "Enabling UE services"
 	first_three_octets=$(echo $ip_address | cut -d '.' -f 1-3)
