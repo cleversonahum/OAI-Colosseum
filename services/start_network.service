@@ -1,11 +1,9 @@
 [Unit]
 Description=Starting network function
-After=network-online.target
-Wants=network-online.target
 
 [Service]
 ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/start_services.sh"
 Type=oneshot
 
 [Install]
-WantedBy=network-online.target
+WantedBy=graphical.target

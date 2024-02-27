@@ -8,6 +8,7 @@ interface_name="col0"
 total_nodes=3
 
 result=$(get_host_index "$interface_name" "$total_nodes")
+echo "Node idx $result"
 if [ "$result" = "1" ]; then
 	echo "Enabling BS+Core services"
 	systemctl enable --now /root/OAI-Colosseum/services/core_network.service

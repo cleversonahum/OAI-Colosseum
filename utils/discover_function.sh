@@ -4,6 +4,9 @@ get_host_index() {
     local interface="$1"
     local total_nodes="$2"
 
+    # Check if the interface exists
+    check_interface_status "$interface"
+
     # Discover the base IP of the given interface
     local base_ip=$(ip addr show dev "$interface" | awk '/inet / {print $2}')
     IFS='/' read -r -a base_ip_parts <<< "$base_ip"
@@ -36,6 +39,22 @@ get_host_index() {
 
     # Return the host machine's index
     echo "$host_index"
+}
+
+check_interface_status() {
+    local interface="$1"
+    while true; do
+        # Check if the interface exists
+        if ip link show "$interface" >/dev/null 2>&1; then
+            # Check if the interface is up and has an IP address
+            if ip addr show dev "$interface" | grep -q 'state UP'; then
+                if ip addr show dev "$interface" | grep -q 'inet '; then
+                    break
+                fi
+            fi
+        fi
+        sleep 1
+    done
 }
 
 # Example usage of the function
