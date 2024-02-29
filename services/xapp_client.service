@@ -2,7 +2,7 @@
 Description= xApp using Ray client agent
 StartLimitIntervalSec=infinity
 StartLimitBurst=infinity
-Requires=xapp_server.service
+After=iperf_server.service
 
 [Service]
 EnvironmentFile=/root/OAI-Colosseum/scenario.env
