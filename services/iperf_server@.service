@@ -5,7 +5,7 @@ StartLimitBurst=infinity
 Requires=gnb.service
 
 [Service]
-ExecStart=/bin/bash -c "iperf3 -s --snd-timeout 100 --idle-timeout 5 -p 520%i --json --logfile /logs/rl_ran_slicing/iperf_server.json"
+ExecStart=/bin/bash -c "iperf3 -s --snd-timeout 100 --idle-timeout 5 -p 520%i --json --logfile /logs/iperf_server.json"
 Restart=always
 RestartSec=100ms
 
