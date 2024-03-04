@@ -26,10 +26,10 @@ else
 	gnb_ip="$first_three_octets.$third_octet"
 	if [ "$(($result - 1))" -le "$ues_slice_1" ]; then
 		sd=1
-		thr_ue=$thr_slice_1
+		thr_ue=$requested_thr_slice_1
 	else
 		sd=2
-		thr_ue=$thr_slice_2
+		thr_ue=$requested_thr_slice_2
 	fi
 	echo -e "GNB_IP=$gnb_ip\nSD=$sd\nNODE_IDX=$result\nTHR_UE=$thr_ue" > /root/OAI-Colosseum/services/env.conf
 	systemctl enable --now /root/OAI-Colosseum/services/ue.service
