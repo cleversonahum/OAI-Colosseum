@@ -1,5 +1,5 @@
 [Unit]
-Description=Iperf3 Server for gNB %i
+Description=Iperf3 Server in the gNB for UE %i
 StartLimitIntervalSec=infinity
 StartLimitBurst=infinity
 Requires=gnb.service
