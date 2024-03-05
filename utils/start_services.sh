@@ -1,13 +1,14 @@
 #!/bin/bash
 
-ip_address=$(ip a show col0 | grep -Po "\b(?:\d{1,3}\.){3}\d{1,3}\b")
-third_octet=$(echo "$ip_address" | cut -d '.' -f 3)
-
 source /root/OAI-Colosseum/utils/discover_function.sh
 source /share/config/rl_ran_slicing/scenario.env
 
 result=$(get_host_index "$interface_name" "$total_nodes")
 echo "Node idx $result"
+
+ip_address=$(ip a show col0 | grep -Po "\b(?:\d{1,3}\.){3}\d{1,3}\b")
+third_octet=$(echo "$ip_address" | cut -d '.' -f 3)
+
 if [ "$result" = "1" ]; then
 	echo "Enabling BS+Core services"
 	systemctl enable --now /root/OAI-Colosseum/services/core_network.service
