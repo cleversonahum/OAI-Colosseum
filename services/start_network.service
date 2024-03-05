@@ -1,5 +1,6 @@
 [Unit]
 Description=Starting network function
+After=graphical.target
 
 [Service]
 ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/start_services.sh"
