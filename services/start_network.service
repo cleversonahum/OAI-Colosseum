@@ -4,6 +4,7 @@ Description=Starting network function
 [Service]
 ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/start_services.sh"
 Type=oneshot
+TimeoutStopSec=infinity
 
 [Install]
 WantedBy=graphical.target
