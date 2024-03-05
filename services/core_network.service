@@ -1,10 +1,8 @@
 [Unit]
 Description=OAI Core network
-After=start_network.service
 After=docker.service
 
 [Service]
-ExecStartPre=/bin/sleep 100
 ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/restart_core.sh"
 ExecStartPost=/bin/sleep 30
 TimeoutStopSec=infinity
