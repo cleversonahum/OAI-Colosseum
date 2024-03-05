@@ -1,14 +1,13 @@
 [Unit]
 Description=OAI UE
-StartLimitIntervalSec=infinity
-StartLimitBurst=infinity
-After=start_network.service
+StartLimitIntervalSec=0
+StartLimitBurst=100
 
 [Service]
 EnvironmentFile=/root/OAI-Colosseum/services/env.conf
 ExecStart=/bin/bash -c "cd /root/OAI-Colosseum && source .env && python3 ran.py -t ue --rfsim --rfsimip $GNB_IP --sd $SD"
 Restart=always
-RestartSec=100ms
+RestartSec=1s
 
 [Install]
 WantedBy=graphical.target
