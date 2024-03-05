@@ -1,11 +1,13 @@
 [Unit]
 Description=OAI Core network
 After=start_network.service
+After=docker.service
 
 [Service]
-WorkingDirectory=/root/oai-cn5g-fed/docker-compose/
+ExecStartPre=/bin/sleep 100
 ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/restart_core.sh"
 ExecStartPost=/bin/sleep 30
+TimeoutStopSec=infinity
 Type=oneshot
 
 [Install]
