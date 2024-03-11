@@ -95,7 +95,7 @@ class Ran:
                      '--MACRLCs.[0].pucch_TargetSNRx10 200',
                      '--MACRLCs.[0].ul_prbblack_SNR_threshold 10',
                      '--MACRLCs.[0].ulsch_max_frame_inactivity 0',
-                     '--MACRLCs.[0].SliceConf /root/Openairinterface5g/rrmPolicy.json',
+                     '--MACRLCs.[0].SliceConf /root/Openairinterface/rrmPolicy.json',
                      '--MACRLCs.[0].ul_max_mcs 28']
             if f1_type == 'du':
                 args += ['--MACRLCs.[0].tr_n_preference "f1"',
@@ -313,7 +313,7 @@ if __name__ == '__main__':
                         default="127.0.0.1",
                         type=str)
     parser.add_argument('--numa',
-                        default=True,
+                        default=False,
                         action='store_false')
     parser.add_argument('--gdb', default=False, action='store_true')
     parser.add_argument('--gdbserver', default=False, action='store_true')
