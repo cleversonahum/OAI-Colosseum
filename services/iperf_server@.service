@@ -1,13 +1,13 @@
 [Unit]
 Description=Iperf3 Server in the gNB for UE %i
-StartLimitIntervalSec=infinity
-StartLimitBurst=infinity
+StartLimitIntervalSec=0
+StartLimitBurst=100
 Requires=gnb.service
 
 [Service]
 ExecStart=/bin/bash -c "iperf3 -s --snd-timeout 100 --idle-timeout 5 -p 520%i --json --logfile /logs/iperf_server%i.json"
 Restart=always
-RestartSec=100ms
+RestartSec=2s
 
 [Install]
 WantedBy=graphical.target
