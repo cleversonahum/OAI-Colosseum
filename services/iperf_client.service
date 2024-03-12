@@ -8,7 +8,7 @@ Requires=ue.service
 EnvironmentFile=/root/OAI-Colosseum/services/env.conf
 ExecStart=/bin/bash -c "iperf3 -c $GNB_IP --bind-dev oaitun_ue10 -t 0 -b $(($THR_UE))M -R --rcv-timeout 100 -p 520$(($NODE_IDX - 1)) --json --logfile /logs/iperf_client.json"
 Restart=always
-RestartSec=10s
+RestartSec=5s
 
 [Install]
 WantedBy=graphical.target
