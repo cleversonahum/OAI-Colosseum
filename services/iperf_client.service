@@ -2,11 +2,11 @@
 Description=Iperf3 client for UE
 StartLimitIntervalSec=0
 StartLimitBurst=100
-Requires=ue.service
+After=ue.service
 
 [Service]
 EnvironmentFile=/root/OAI-Colosseum/services/env.conf
-ExecStart=/bin/bash -c "iperf3 -c $GNB_IP --bind-dev oaitun_ue10 -t 0 -b $(($THR_UE))M -R --rcv-timeout 100 -p 520$(($NODE_IDX - 1)) --json --logfile /logs/iperf_client.json"
+ExecStart=/bin/bash -c "iperf3 -c $GNB_IP --bind-dev oaitun_ue10 -t 0 -b $(($THR_UE))M -R --rcv-timeout 1000 -p 520$(($NODE_IDX - 1)) --forceflush"
 Restart=always
 RestartSec=5s
 
