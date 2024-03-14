@@ -6,9 +6,9 @@ After=ue.service
 
 [Service]
 EnvironmentFile=/root/OAI-Colosseum/services/env.conf
+ExecStartPre=/bin/sleep 30
 ExecStart=/bin/bash -c "iperf3 -c $GNB_IP --bind-dev oaitun_ue10 -t 0 -b $(($THR_UE))M -R --rcv-timeout 1000 -p 520$(($NODE_IDX - 1)) --forceflush"
 Restart=always
-RestartSec=5s
 
 [Install]
 WantedBy=graphical.target
