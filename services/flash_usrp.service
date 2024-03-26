@@ -1,0 +1,11 @@
+[Unit]
+Description=Flash UHD compatible image on USRP
+
+[Service]
+ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/flash_usrp.sh"
+ExecStartPre=/bin/sleep 30
+TimeoutStopSec=infinity
+Type=oneshot
+
+[Install]
+WantedBy=graphical.target
