@@ -1,0 +1,11 @@
+[Unit]
+Description=Start Colosseum RF Scenario
+
+[Service]
+ExecStart=/bin/bash -c "colosseumcli rf start -c 10011"
+ExecStartPre=/bin/sleep 10
+TimeoutStopSec=infinity
+Type=oneshot
+
+[Install]
+WantedBy=graphical.target

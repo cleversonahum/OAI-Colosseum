@@ -5,8 +5,8 @@ StartLimitBurst=100
 After=core_network.service
 
 [Service]
-WorkingDirectory=/root/OAI-Colosseum
-ExecStart=/bin/bash -c "cd /root/OAI-Colosseum && source .env && python3 ran.py -t donor --rfsim"
+Environment="HOME=/root/"
+ExecStart=/bin/bash -c "ip r delete 192.168.70.128/26; cd /root/OAI-Colosseum && source .env && python3 ran.py -t donor"
 Restart=always
 RestartSec=5s
 

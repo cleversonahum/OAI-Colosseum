@@ -9,6 +9,7 @@ echo "Node idx $result"
 ip_address=$(ip a show col0 | grep -Po "\b(?:\d{1,3}\.){3}\d{1,3}\b")
 third_octet=$(echo "$ip_address" | cut -d '.' -f 3)
 
+systemctl enable --now /root/OAI-Colosseum/services/rf_scenario.service
 systemctl enable --now /root/OAI-Colosseum/services/flash_usrp.service
 if [ "$result" = "1" ]; then
 	echo "Enabling BS+Core services"
@@ -33,7 +34,7 @@ else
 		sd=2
 		thr_ue=$requested_thr_slice_2
 	fi
-	echo -e "GNB_IP=$gnb_ip\nSD=$sd\nNODE_IDX=$result\nTHR_UE=$thr_ue" > /root/OAI-Colosseum/services/env.conf
+	echo -e "HOME=/root/\nGNB_IP=$gnb_ip\nSD=$sd\nNODE_IDX=$result\nTHR_UE=$thr_ue" > /root/OAI-Colosseum/services/env.conf
 	systemctl enable --now /root/OAI-Colosseum/services/ue.service
 	systemctl enable --now /root/OAI-Colosseum/services/iperf_client.service
 fi
