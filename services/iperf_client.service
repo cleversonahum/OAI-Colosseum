@@ -6,7 +6,7 @@ After=ue.service
 
 [Service]
 EnvironmentFile=/root/OAI-Colosseum/services/env.conf
-ExecStartPre=/bin/sleep 30
+ExecStartPre=/bin/bash -c "ssh root@$GNB_IP systemctl restart iperf_server@$(($NODE_IDX -1)).service && sleep 30"
 ExecStart=/bin/bash -c "iperf3 -c 192.168.70.135 --bind-dev oaitun_ue10 -t 0 -b $(($THR_UE))M -R --rcv-timeout 1000 -p 520$(($NODE_IDX - 1)) -u --forceflush"
 Restart=always
 
