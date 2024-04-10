@@ -8,6 +8,8 @@ Requires=gnb.service
 ExecStart=/usr/bin/docker exec -i oai-ext-dn /bin/bash -c "iperf3 -s --snd-timeout 100 --idle-timeout 5 -p 520%i --forceflush"
 Restart=always
 RestartSec=2s
+KillSignal=SIGINT
+ExecStop=/usr/bin/pkill -f "iperf3 -s --snd-timeout 100 --idle-timeout 5 -p 520%i --forceflush"
 
 [Install]
 WantedBy=graphical.target
