@@ -9,6 +9,9 @@ echo "Node idx $result"
 ip_address=$(ip a show col0 | grep -Po "\b(?:\d{1,3}\.){3}\d{1,3}\b")
 third_octet=$(echo "$ip_address" | cut -d '.' -f 3)
 
+# Cloning/updating git repos
+/usr/bin/bash -c "/root/OAI-Colosseum/utils/set_internet_access.sh && git -C /root/Openairinterface pull origin NR_Slicing && git -C /root/xapp_sched_rlagent pull origin main && git -C /root/OAI-Colosseum pull origin main"  
+
 systemctl enable --now /root/OAI-Colosseum/services/rf_scenario.service
 systemctl enable --now /root/OAI-Colosseum/services/flash_usrp.service
 if [ "$result" = "1" ]; then
