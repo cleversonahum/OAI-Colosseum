@@ -3,6 +3,8 @@ Description=Starting network function
 After=graphical.target
 
 [Service]
+User=root
+Group=root
 ExecStart=/bin/bash -c "/root/OAI-Colosseum/utils/start_services.sh"
 Type=oneshot
 TimeoutStopSec=infinity
