@@ -17,7 +17,9 @@ systemctl enable --now /root/OAI-Colosseum/services/flash_usrp.service
 if [ "$result" = "1" ]; then
 	echo "Enabling BS+Core services"
 	# Copy pre-trained agent if it exists
-	cp -r /share/config/rl_ran_slicing/agent/ray_results/ /logs/rl_ran_slicing/
+	mkdir -p /logs/rl_ran_slicing/
+	cp /share/config/rl_ran_slicing/scenario.env /logs/rl_ran_slicing/
+	cp -r /share/config/rl_ran_slicing/agent/$scenario_name/$rl_agent_name/ray_results/ /logs/rl_ran_slicing/
 	systemctl enable --now /root/OAI-Colosseum/services/core_network.service
 	systemctl enable --now /root/OAI-Colosseum/services/gnb.service
 	systemctl link /root/OAI-Colosseum/services/iperf_server@.service
